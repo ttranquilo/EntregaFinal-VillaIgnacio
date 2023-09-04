@@ -1,0 +1,23 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(75, 75, 75);
+    width: 100%;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.navbar li {
+    transition: all 0.2s;
+    font-size: 20px;
+    list-style-type: none;
+    text-decoration: none;
+    padding: 0px 50px;
+}

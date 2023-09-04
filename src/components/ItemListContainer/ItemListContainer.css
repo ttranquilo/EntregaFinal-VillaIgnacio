@@ -1,0 +1,12 @@
+.catalog {
+    height: 90vh;
+    width: 100%;
+}
+
+.catalog__content {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-rows: repeat(3, minmax(450px, 1fr));
+}

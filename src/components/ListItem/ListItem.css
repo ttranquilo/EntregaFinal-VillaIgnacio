@@ -1,0 +1,105 @@
+
+.catalog__content--item--buttons {
+    width: 80%;
+}
+
+.catalog--addToCart {
+    border: 0px;
+    color: rgb(255, 255, 255);
+    border-radius: 0px 0px 0px 0px;
+    background-color: rgb(0, 0, 0);
+    margin-top: 10px;
+    font-size: 12px;
+    width: 60%;
+    height: 40px;
+    transition: 0.5s;
+}
+
+
+.catalog--addToCart:hover {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 247, 247);
+    transition: 0.5s;
+}
+
+.catalog--addToCart:active {
+    color: rgb(255, 255, 255);
+    background-color: rgb(6, 199, 38);
+    transition: 0.1s;
+}
+
+
+.catalog--addQuantity,
+.catalog--removeQuantity {
+    border: 0px;
+    color: rgb(235, 235, 235);
+    background-color: rgb(0, 0, 0);
+    margin-top: 10px;
+    font-size: 20px;
+    width: 60%;
+    height: 40px;
+    transition: 0.5s;
+}
+
+.catalog--addQuantity {
+    border-radius: 0px 20px 20px 0px;
+}
+
+.catalog--removeQuantity {
+    border-radius: 20px 0px 0px 20px;
+}
+
+.catalog--addQuantity:hover,
+.catalog--removeQuantity:hover {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 247, 247);
+    transition: 0.5s;
+}
+
+.catalog--addQuantity:active,
+.catalog--removeQuantity:active {
+    color: rgb(255, 255, 255);
+    background-color: rgb(6, 199, 38);
+    height: 40px;
+    transition: 0.1s;
+}
+
+.catalog__content img {
+    object-fit: cover;
+    border-radius: 20px;
+    height: 180px;
+    width: 180px;
+}
+
+.catalog__content--item {
+    border-radius: 30px;
+    margin: 40px;
+    border: 1px solid rgb(146, 146, 146);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#product__price,
+#product__name {
+    margin-top: 0px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.catalog--quanity-text {
+    border: 2px solid black;
+    align-self: center;
+    justify-self: center;
+    margin-top: 5px;
+    margin-bottom: -10px;
+    border-radius: 10px 10px 0px 0px;
+    font-size: 20px;
+    padding: 0px 10%;
+}
+
+.catalog__content--item--buttons {
+    display: flex;
+}
