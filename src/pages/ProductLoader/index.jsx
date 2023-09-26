@@ -56,9 +56,9 @@ const ProductLoader = () => {
   return (
     <Layout>
       <ItemListContainer>
-        {products.map((prod) => (
+        {products.map((prod, index) => (
           <ListItem
-            key={prod.name}
+            key={prod.name+index}
             name={prod.name}
             price={prod.price}
             url={prod.image}
