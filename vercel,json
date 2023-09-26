@@ -1,13 +1,6 @@
 {
   "rewrites":  [
     {"source": "/(.*)", "destination": "/"}
-  ],
-
-  "routes": [
-    { "src": "/home", "dest": "/" },
-    { "src": "/category/vegetables", "dest": "/" },
-    { "src": "/tos", "dest": "/" }
-
   ]
 }
 

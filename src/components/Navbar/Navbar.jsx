@@ -7,11 +7,11 @@ const Navbar = (props) => {
         <header>
             <div className='navbar'>
                 <h1 className='title'>
-                    <Link to='/home'>{props.brand}</Link>
+                    <Link to='/'>{props.brand}</Link>
                 </h1>
                 <nav>
                     <ul>
-                    <Link to='/home'><li> All</li></Link>
+                    <Link to='/'><li> All</li></Link>
                     <Link to='/category/vegetables'><li> Vegetables</li></Link>
                     <Link to='/category/beverages'><li> Beverages</li></Link>
                     <Link to='/category/snacks'><li> Snacks</li></Link>
