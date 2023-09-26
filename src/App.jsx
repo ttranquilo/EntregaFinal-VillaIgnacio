@@ -8,8 +8,6 @@ function App() {
       <CustomBrowserRouter>
 
       </CustomBrowserRouter>
-
-      <img src="/data/Aguacate.jpg" alt="" />
     </>
   )
 

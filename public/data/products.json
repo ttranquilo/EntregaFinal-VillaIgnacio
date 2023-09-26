@@ -3,7 +3,7 @@
     "quantity": 0,
     "name": "Potato",
     "price": 200,
-    "image": "/src/images/Papa.webp",
+    "image": "/images/Papa.webp",
     "category": "vegetables",
     "description": "A fresh potato from a forbidden farm"
   },
@@ -11,7 +11,7 @@
     "quantity": 0,
     "name": "Onion",
     "price": 500,
-    "image": "/src/images/Cebolla.jpg",
+    "image": "/images/Cebolla.jpg",
     "category": "vegetables",
     "description": "An individual smelly onion."
   },
@@ -20,7 +20,7 @@
     "quantity": 0,
     "name": "Tomato",
     "price": 800,
-    "image": "/src/images/Tomate.jpg",
+    "image": "/images/Tomate.jpg",
     "category": "vegetables",
     "description": "Fresh half sized tomato with no antibiotics."
   },
@@ -28,7 +28,7 @@
     "quantity": 0,
     "name": "Avocado",
     "price": 2000,
-    "image": "/src/images/Aguacate.jpg",
+    "image": "/images/Aguacate.jpg",
     "category": "vegetables",
     "description": "A delicious Colombian giant avocado."
   },
@@ -36,7 +36,7 @@
     "quantity": 0,
     "name": "Yucca",
     "price": 1700,
-    "image": "/src/images/Yuca.jpg",
+    "image": "/images/Yuca.jpg",
     "category": "vegetables",
     "description": "Just Yucca."
   },
@@ -44,7 +44,7 @@
     "quantity": 0,
     "name": "Doritos",
     "price": 2500,
-    "image": "/src/images/Doritos.webp",
+    "image": "/images/Doritos.webp",
     "category": "snacks",
     "description": "Medium sized Doritos, for personal use only."
   },
@@ -52,7 +52,7 @@
     "quantity": 0,
     "name": "Canned Tuna",
     "price": 2000,
-    "image": "/src/images/Atun.png",
+    "image": "/images/Atun.png",
     "category": "snacks",
     "description": "Smelly but delicioys tunna fish inside a can."
   },
@@ -60,7 +60,7 @@
     "quantity": 0,
     "name": "Water bottle",
     "price": 500,
-    "image": "/src/images/Agua.jpg",
+    "image": "/images/Agua.jpg",
     "category": "beverages",
     "description": "Water inside a bottle."
   },
@@ -68,7 +68,7 @@
     "quantity": 0,
     "name": "Small natural juice",
     "price": 500,
-    "image": "/src/images/Jugo_en_caja.jpg",
+    "image": "/images/Jugo_en_caja.jpg",
     "category": "beverages",
     "description": "Natural and fresh Colombian juice."
   }
