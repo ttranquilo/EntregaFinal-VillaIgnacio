@@ -1,20 +1,38 @@
-
 .catalog__content--item--buttons {
     width: 80%;
 }
 
 .catalog--addToCart {
+    width: 100%;
     border: 0px;
     color: rgb(255, 255, 255);
     border-radius: 0px 0px 0px 0px;
     background-color: rgb(0, 0, 0);
     margin-top: 10px;
-    font-size: 12px;
-    width: 60%;
     height: 40px;
     transition: 0.5s;
+
 }
 
+.catalog__content--item--buttons a {
+
+    width: 60%;
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+
+}
+
+.catalog__content--item--imageContainer {
+    margin-top: 50px;
+    position: relative;
+}
+
+.catalog--preview {
+    position: absolute;
+    left: 70%;
+    top: 70%;
+}
 
 .catalog--addToCart:hover {
     color: rgb(0, 0, 0);

@@ -1,0 +1,6 @@
+.preview__product--image{
+    border-radius: 10%;
+    object-fit: cover;
+    height: 350px;
+    width: 350px;
+}
