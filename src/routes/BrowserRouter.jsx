@@ -3,7 +3,7 @@ import { ProductLoader, ItemPreviewPage, CheckoutPage } from '../pages';
 
 const routes = createBrowserRouter([
     {
-        path: '/home',
+        path: '/',
         element: <ProductLoader />
     },
     {
