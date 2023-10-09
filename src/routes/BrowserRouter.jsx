@@ -15,6 +15,7 @@ const routes = createBrowserRouter([
         path: '/category/:id',
         element: <ProductLoader/>
     },
+    
     {
         path: '/checkout',
         element: <CheckoutPage />

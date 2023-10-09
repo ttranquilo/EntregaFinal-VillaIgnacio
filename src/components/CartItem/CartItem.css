@@ -1,0 +1,26 @@
+.cart__item {
+    margin: 50px auto;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid blue;
+
+
+}
+
+.cart__item-image {
+    border-radius: 10px;
+    object-fit: cover;
+    height: 80px;
+    width: 80px;
+}
+
+
+.cart__item-info {
+
+display: flex;
+flex-direction: column;
+}
+
+

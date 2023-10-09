@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './ListItem.css';
+import { cartContext } from '../../context/CartContext';
+
+
 
 const ListItem = (props) => {
+
+  const {   storeProducts, cart, addToCart } = useContext(cartContext)
   const [quantity, setQuantity] = useState(1);
 
   const incrementQuantity = () => {
@@ -15,9 +20,11 @@ const ListItem = (props) => {
     }
   };
 
-  const addToCart = () => {
-
-  }
+  const processItem = () => {
+    const productToAdd = storeProducts.find((prod) => prod.name === props.name);
+    productToAdd.quantity = quantity;
+    addToCart(productToAdd)
+  };
 
   return (
     <div className="catalog__content--item">
@@ -36,7 +43,7 @@ const ListItem = (props) => {
 
       <div className="catalog__content--item--buttons">
         <button className="catalog--removeQuantity" onClick={decrementQuantity}> - </button>
-        <button className="catalog--addToCart" onClick={addToCart}> Add to cart </button>
+        <button className="catalog--addToCart" onClick={processItem}> Add to cart </button>
         <button className="catalog--addQuantity" onClick={incrementQuantity}> + </button>
       </div>
     </div>

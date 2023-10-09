@@ -16,7 +16,6 @@
     "description": "An individual smelly onion."
   },
   {
-    "id": 2,
     "quantity": 0,
     "name": "Tomato",
     "price": 800,

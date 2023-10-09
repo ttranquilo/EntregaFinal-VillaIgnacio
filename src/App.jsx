@@ -1,13 +1,17 @@
 import CustomBrowserRouter from "./routes/BrowserRouter"
+import CartContextProvider from "./context/CartContext"
 import './App.css'
 
 function App() {
 
   return (
     <>
-      <CustomBrowserRouter>
+      <CartContextProvider>
 
-      </CustomBrowserRouter>
+        <CustomBrowserRouter>
+        </CustomBrowserRouter>
+
+      </CartContextProvider>
     </>
   )
 

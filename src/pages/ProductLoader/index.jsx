@@ -1,64 +1,70 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ListItem from '../../components/ListItem/ListItem';
 import ItemListContainer from '../../components/ItemListContainer/ItemListContainer';
 import Layout from '../../components/Layout/Layout';
 import Swal from 'sweetalert2';
+import { cartContext } from '../../context/CartContext';
+import { db } from '../../db/db';
+import { collection, getDocs } from 'firebase/firestore';
 
 const ProductLoader = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const { setStoreProducts } = useContext(cartContext);
+
   const [products, setProducts] = useState([]);
   const { id } = useParams();
 
-  const fetchProducts = async () => {
-    try {
-      const response = await fetch('/data/products.json'); 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
 
-      setTimeout(() => {
-      const filteredProducts = id === undefined ? data : data.filter((prod) => prod.category === id);
-      setProducts(filteredProducts);
-      setIsLoading(false);
-      }, 1000)
-    } catch (error) {
+  const fetchProducts = async () => {
+    const itemCollection = collection(db, 'products');
+
+    // Retrieve products from Firestore
+    const response = await getDocs(itemCollection);
+    const retrievedProducts = response.docs.map((prod) => ({
+      id: prod.id,
+      ...prod.data(),
+    }));
     
-      setIsLoading(false);
-    }
+    // Set retrieved products to the array
+    setStoreProducts(retrievedProducts);
+    const filteredProducts = id === undefined ? retrievedProducts : retrievedProducts.filter((prod) => prod.category === id);
+
+    // Set the filtered products from a category
+    setProducts(filteredProducts);
   };
 
-  //Fetch products whenever the page id changes
   useEffect(() => {
-    setIsLoading(true);
-    fetchProducts();
+    const fetchData = async () => {
+      try {
+        await fetchProducts();
+     
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData();
+  
+    // Show loading alert
+    Swal.fire({
+      title: 'Please wait',
+      icon: 'warning',
+      html: 'We are loading the product catalog, please be patient.',
+      showCancelButton: false,
+      showCloseButton: false,
+      timer: 2000,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
   }, [id]);
-
-  useEffect(() => {
-    if (isLoading) {
-      Swal.fire({
-        title: 'Please wait',
-        icon: 'warning',
-        html: 'We are loading the product catalog, please be patient.',
-        showCancelButton: false,
-        showCloseButton: false,
-        timer: 2000,
-        didOpen: () => {
-          Swal.showLoading();
-        },
-      });
-    } else {
-      Swal.close();
-    }
-  }, [isLoading]);
 
   return (
     <Layout>
       <ItemListContainer>
         {products.map((prod, index) => (
           <ListItem
-            key={prod.name+index}
+            key={prod.name + index}
             name={prod.name}
             price={prod.price}
             url={prod.image}

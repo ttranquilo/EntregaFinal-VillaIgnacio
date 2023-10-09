@@ -1,5 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { db } from '../../db/db';
+import { collection, getDocs } from 'firebase/firestore';
 import Layout from '../../components/Layout/Layout';
 import './product_preview.css'
 
@@ -10,13 +12,17 @@ const Product_preview = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('/data/products.json');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                const filteredProduct = data.find((prod) => prod.name.toLowerCase() === productId);
 
+                const itemCollection = collection(db, 'products');
+                // Retrieve products from Firestore
+                const response = await getDocs(itemCollection);
+                const retrievedProducts = response.docs.map((prod) => ({
+                    id: prod.id,
+                    ...prod.data(),
+                }));
+
+                console.log(retrievedProducts);
+                const filteredProduct = retrievedProducts.find((prod) => prod.name.toLowerCase() === productId);
                 setProduct(filteredProduct);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -37,9 +43,7 @@ const Product_preview = () => {
                         <h3> Description </h3>
                         <p> {product.description}</p>
                         <Link to={`/category/${product.category}`}>
-
                             <button> Return to "{product.category}" category</button>
-
                         </Link>
                     </div>
                 </div>
