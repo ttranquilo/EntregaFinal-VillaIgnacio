@@ -25,17 +25,23 @@ const ProductLoader = () => {
       ...prod.data(),
     }));
     
-    // Set retrieved products to the array
+
+    setTimeout(() => {
+       // Set retrieved products to the array
     setStoreProducts(retrievedProducts);
     const filteredProducts = id === undefined ? retrievedProducts : retrievedProducts.filter((prod) => prod.category === id);
 
     // Set the filtered products from a category
     setProducts(filteredProducts);
+    }, 1000);
+   
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+          // Set the filtered products from a category
+    setProducts([]);
         await fetchProducts();
      
       } catch (error) {
