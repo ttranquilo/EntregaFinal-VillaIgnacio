@@ -72,6 +72,7 @@ const ProductLoader = () => {
           <ListItem
             key={prod.name + index}
             name={prod.name}
+            onSale={prod.saleModifier > 0}
             price={prod.price}
             url={prod.image}
           />

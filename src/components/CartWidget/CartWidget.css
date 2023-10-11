@@ -1,14 +1,18 @@
-/*mini cart */
-
-.bi-cart+p {
-    align-self: center;
+.CartBadge {
     position: relative;
-    margin-top: -20px;
-    right: -65%;
-    font-size: 14px;
-}
-
-.bi-cart:hover {
-    color: rgb(0, 195, 255);
-    transition: 0.2s;
-}
+  }
+  
+  .CartBadge::after {
+    content: attr(data-badge); /* Use the "data-badge" attribute as the content */
+    position: absolute;
+    top: -10px; /* Adjust the vertical position as needed */
+    right: -10px; /* Adjust the horizontal position as needed */
+    width: 20px; /* Set the width and height to define the circular shape */
+    height: 20px;
+    background: rgb(0, 162, 255); /* Customize the background color */
+    border-radius: 50%; /* Create a circular shape */
+    text-align: center;
+    color: white; /* Text color */
+    font-size: 14px; /* Text size */
+    line-height: 20px; /* Center text vertically */
+  }

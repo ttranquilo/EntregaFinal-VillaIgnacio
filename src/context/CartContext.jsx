@@ -24,7 +24,12 @@ const CartContextProvider = (props) => {
                 type: toast.TYPE.SUCCESS,
                 autoClose: 2000,
                 hideProgressBar: true,
-            });
+                
+             
+            })
+
+
+
         } else {
             // Show a new toast for a different product or the first click
             productCount.current = item.quantity; // Reset the count

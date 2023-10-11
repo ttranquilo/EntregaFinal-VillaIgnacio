@@ -1,4 +1,5 @@
 import './CartItem.css';
+import { Link } from 'react-router-dom';
 import { cartContext } from '../../context/CartContext';
 import { useContext } from 'react';
 
@@ -13,7 +14,9 @@ const CartItem = (props) => {
     return (
         <div>
             <div className="cart__item">
-                <img className='cart__item-image' src={url} alt="" />
+                <Link to={`/product/${name.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <img className='cart__item-image' src={url} alt="" />
+                </Link>
                 <h3> {name}</h3>
                 <div>
                 </div>
@@ -24,6 +27,7 @@ const CartItem = (props) => {
                 <div className='cart__item-closeBtn'>
                     <button onClick={handleRemoveClick}> X </button>
                 </div>
+
             </div>
         </div>
     );

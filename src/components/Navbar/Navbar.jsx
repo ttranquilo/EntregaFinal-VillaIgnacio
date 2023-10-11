@@ -1,12 +1,10 @@
 import './Navbar.css'
 import CartWidget from '../CartWidget/CartWidget';
 import { Link } from 'react-router-dom';
-import { cartContext } from '../../context/CartContext';
-import { useContext } from 'react';
+
 
 const Navbar = (props) => {
 
-    const {cart} = useContext(cartContext);
 
     return (
         <header>
@@ -23,7 +21,7 @@ const Navbar = (props) => {
                     </ul>
                 </nav>
                 <Link to='/checkout'>
-                <CartWidget count= {cart.length}></CartWidget>
+                <CartWidget/>
                 </Link>
 
             </div>

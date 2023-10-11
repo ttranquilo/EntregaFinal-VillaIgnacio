@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 import { Ring } from '@uiball/loaders'
 
 
-
 const Checkout = (props) => {
 
   const [isLoading, setLoading] = useState(false);
@@ -15,7 +14,7 @@ const Checkout = (props) => {
   const btnStyle = { width: 300 + "px", height: 60 + "px", fontSize: 22 + "px" };
 
   useEffect(() => {
-    
+
     //Sets up a loading state for the cart page
     setLoading(true);
     setTimeout(() => {
@@ -37,8 +36,8 @@ const Checkout = (props) => {
 
   return (
     <Layout>
+      <h1> Shopping cart</h1>
       {!isLoading ? (
-
         cart.length > 0 ? (
           cart.map((item, index) => (
             <CartItem
@@ -52,7 +51,6 @@ const Checkout = (props) => {
         ) : (
           <p> Your cart is empty.</p>
         )
-
       ) : <Ring
         size={350}
         lineWeight={2}
@@ -60,13 +58,9 @@ const Checkout = (props) => {
         color="white"
       />}
 
-
-
-
       {cart.length > 0 && !isLoading && (
         <div>
-
-          <h2> Your total is {displayTotal()} </h2>
+          <h2> Your total is ${displayTotal()} </h2>
           <button
             className="cart__checkout-Btn"
             style={btnStyle}

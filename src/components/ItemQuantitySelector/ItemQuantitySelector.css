@@ -1,0 +1,103 @@
+.quantity__buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+
+    text-align: center;
+}
+
+.quantity__addToCart-btn {
+    width: 100%;
+    border: 0px;
+    color: rgb(255, 255, 255);
+    border-radius: 0px 0px 0px 0px;
+    background-color: rgb(0, 0, 0);
+    margin-top: 10px;
+    height: 40px;
+    transition: 0.5s;
+
+}
+
+.quantity__buttons-container a {
+
+    width: 60%;
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+
+}
+
+.quantity__addToCart-btn:hover {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 247, 247);
+    transition: 0.5s;
+}
+
+.quantity__addToCart-btn:active {
+    color: rgb(255, 255, 255);
+    background-color: rgb(6, 199, 38);
+    transition: 0.1s;
+}
+
+
+.quantity__addQuantity-btn,
+.quantity__removeQuantity-btn {
+    border: 0px;
+    color: rgb(235, 235, 235);
+    background-color: rgb(0, 0, 0);
+    margin-top: 10px;
+    font-size: 20px;
+    width: 60%;
+    height: 40px;
+    transition: 0.5s;
+}
+
+.quantity__addQuantity-btn {
+    border-radius: 0px 20px 20px 0px;
+}
+
+.quantity__removeQuantity-btn {
+    border-radius: 20px 0px 0px 20px;
+}
+
+.quantity__addQuantity-btn:hover,
+.quantity__removeQuantity-btn:hover {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 247, 247);
+    transition: 0.5s;
+}
+
+.quantity__addQuantity-btn:active,
+.quantity__removeQuantity-btn:active {
+    color: rgb(255, 255, 255);
+    background-color: rgb(6, 199, 38);
+    height: 40px;
+    transition: 0.1s;
+}
+
+.quantity-text {
+    text-align: center;
+    resize: none;
+    overflow: hidden;
+    border: 2px solid black;
+    align-self: center;
+    justify-self: center;
+    margin-top: 5px;
+    margin-bottom: -10px;
+    border-radius: 10px 10px 0px 0px;
+    font-size: 20px;
+    padding: 0px 5%;
+    width: 13%;
+    
+    height: 7%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
