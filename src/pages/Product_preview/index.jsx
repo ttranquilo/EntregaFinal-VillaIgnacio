@@ -40,11 +40,24 @@ const Product_preview = () => {
 
                     <div className="preview__product-details">
                         <h1 className="preview__product-name">{product.name}</h1>
-                        <strong> <p className="preview__product-stock"> On stock ({product.stock} units left)</p></strong>
+                        <strong>
+                            <p className={
+                                product.stock > 0
+                                    ? product.stock > 10
+                                        ? "preview__product-hasStock"
+                                        : "preview__product-stockSoon"
+                                    : "preview__product-noStock"
+                            }>
+                                {product.stock > 0
+                                    ? `On stock (${product.stock} units left${product.stock <= 10 ? ", order soon!" : ""
+                                    })`
+                                    : "Out of stock"}
+                            </p>
+                        </strong>
 
                         <p className="preview__product-description"> {product.description}</p>
 
-                        {product.saleModifier > 0 ? (
+                        {product.saleModifier > 0 && product.stock > 0? (
                             <>
                                 <div className="preview__product-badges">
                                     <strong><p className="preview__product-price"> ${product.price - (product.price * product.saleModifier * 0.01)}</p> </strong>
@@ -61,10 +74,21 @@ const Product_preview = () => {
 
 
                         <div style={{ width: 450 + "px", margin: "auto" }}>
-                            <ItemQuantitySelector name={product.name}> </ItemQuantitySelector>
+                            {product.stock > 0 ? (
+                                <>
+                                    <ItemQuantitySelector name={product.name} orientation={"horizontal"}> </ItemQuantitySelector>
+                                    <strong><p> Or </p></strong>
+                                </>
+
+
+
+                            ) : (
+                                <h3> Out of stock, come back another time</h3>
+                            )}
+
                         </div>
 
-                        <strong><p> Or </p></strong>
+
                         <Link to={`/category/${product.category}`}>
                             <button> Return to "{product.category}" category</button>
                         </Link>

@@ -3,13 +3,13 @@ import './ListItem.css';
 import ItemQuantitySelector from '../ItemQuantitySelector/ItemQuantitySelector';
 
 const ListItem = (props) => {
-  const { name, price, url, onSale } = props;
+  const { name, price, url, onSale, onStock } = props;
 
   return (
     <div className="item__content">
       <div className='item__content--image-container'>
         <img src={url} alt="" />
-        {onSale ? (
+        {onSale && onStock ? (
           <div className='item__content--image-badge'>
             <strong><p> On sale!</p></strong>
           </div>
@@ -24,10 +24,16 @@ const ListItem = (props) => {
       </div>
 
       <p id="item__name"> {name} </p>
-      <strong><p id="item__stock"> Stock availabe (500 units left)</p></strong>
+      <strong><p id={onStock ? "item__stock-available" : "item__stock-not-available"}> {onStock ? "On stock" : "Out of stock"}</p></strong>
       <p id="item__price"> ${price.toLocaleString()}</p>
 
-      <ItemQuantitySelector name={name}></ItemQuantitySelector>
+      {onStock ? (
+        <ItemQuantitySelector name={name} orientation={""}></ItemQuantitySelector>
+      ) : (
+        <>
+        </>
+      )}
+
     </div>
   );
 }

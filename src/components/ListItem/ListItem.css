@@ -54,9 +54,26 @@
 }
 
 #item__stock {
+    display: none;
     margin-block-start: 5px;
     margin-block-end: 0px;
     text-align: left;
     font-size: 15px;
     color: green;
+}
+
+#item__stock-available{
+    margin-block-start: 5px;
+    margin-block-end: 0px;
+    text-align: left;
+    font-size: 15px;
+    color: green;
+}
+
+#item__stock-not-available {
+    margin-block-start: 5px;
+    margin-block-end: 0px;
+    text-align: left;
+    font-size: 15px;
+    color: red;
 }

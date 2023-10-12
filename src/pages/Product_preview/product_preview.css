@@ -16,6 +16,7 @@ text-align: center;
 .preview__product-price {
     text-align: left;
     font-size: 30px;
+    margin: 0px;
 }
 
 strong {
@@ -33,7 +34,7 @@ strong {
     color: gray;
     text-align: left;
     text-decoration: line-through;
-    margin-top: -30px;
+    margin-top: -20px;
     font-size: 20px;
 }
 
@@ -42,7 +43,7 @@ strong {
     margin: 0px;
 }
 
-.preview__product-stock {
+.preview__product-hasStock {
     text-align: left;
     margin: 0px;
     color : green;
@@ -52,9 +53,17 @@ strong {
 .preview__product-noStock {
     text-align: left;
     margin: 0px;
-    color : rgb(128, 0, 0);
+    color : red;
     font-size: 20px;
 }
+
+.preview__product-stockSoon{
+    text-align: left;
+    margin: 0px;
+    color : rgb(201, 99, 4);
+    font-size: 20px;
+}
+
 
 
 .preview__product-description {

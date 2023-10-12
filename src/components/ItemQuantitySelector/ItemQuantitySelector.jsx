@@ -5,7 +5,7 @@ import './ItemQuantitySelector.css'
 const ItemQuantitySelector = (props) => {
 
     const { storeProducts, addToCart } = useContext(cartContext)
-    const { name } = props;
+    const { name, orientation } = props;
     const [quantity, setQuantity] = useState(1)
 
     const addCustomQuantity = (value) => {
@@ -32,8 +32,31 @@ const ItemQuantitySelector = (props) => {
         addToCart(productToAdd)
     };
 
-    return (
-        <>
+    const quantityElement = (className) => {
+        return (
+            <input
+                type='number'
+                className={className}
+                value={quantity}
+
+                onBlur={(e) => {
+                    if (e.target.value.trim() === "") {
+                        // When input is empty, set the quantity to 1.
+                        setQuantity(1);
+                    }
+                }}
+
+                onChange={(e) => {
+                    // Limit the input value to 3 characters
+                    if (e.target.value.length <= 3) {
+                        addCustomQuantity(e.target.value);
+                    }
+                }}
+            />
+        )
+    }
+    const defaultOrientation = () => {
+        return (<>
             <input
                 type='number'
                 className="quantity-text"
@@ -58,6 +81,60 @@ const ItemQuantitySelector = (props) => {
                 <button className="quantity__addToCart-btn" onClick={() => processItem(name)}> Add to cart </button>
                 <button className="quantity__addQuantity-btn" onClick={incrementQuantity}> + </button>
             </div>
+        </>)
+    }
+
+    const horizontalOrientation = () => {
+        return (<>
+
+
+            <div className="quantity__buttons-container">
+
+                <button className="quantity__removeQuantity-btn" onClick={decrementQuantity}> - </button>
+                {quantityElement("quantity-text")}
+                <button className="quantity__addQuantity-btn" onClick={incrementQuantity}> + </button>
+                <button className="quantity__addToCart-btn" onClick={() => processItem(name)}> Add to cart </button>
+            </div>
+        </>)
+    }
+
+    const cartOrientation = () => {
+        return (<>
+            <input
+                type='number'
+                className="quantity-text"
+                value={quantity}
+
+                onBlur={(e) => {
+                    if (e.target.value.trim() === "") {
+                        // When input is empty, set the quantity to 1.
+                        setQuantity(1);
+                    }
+                }}
+
+                onChange={(e) => {
+                    // Limit the input value to 3 characters
+                    if (e.target.value.length <= 3) {
+                        addCustomQuantity(e.target.value);
+                    }
+                }}
+            />
+            <div className="quantity__buttons-container">
+                <button className="quantity__removeQuantity-btn" onClick={decrementQuantity}> - </button>
+                <button className="quantity__addToCart-btn" onClick={() => processItem(name)}> Add to cart </button>
+                <button className="quantity__addQuantity-btn" onClick={incrementQuantity}> + </button>
+            </div>
+        </>)
+    }
+
+    return (
+        <>
+
+            {orientation === "" ? (
+               defaultOrientation()
+            ) : (horizontalOrientation()) 
+            }
+
         </>
     );
 }
