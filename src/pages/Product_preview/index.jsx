@@ -50,14 +50,17 @@ const Product_preview = () => {
                             }>
                                 {product.stock > 0
                                     ? `On stock (${product.stock} units left${product.stock <= 10 ? ", order soon!" : ""
-                                    })`
+                                    })
+                                    `
                                     : "Out of stock"}
+
+
                             </p>
                         </strong>
 
                         <p className="preview__product-description"> {product.description}</p>
 
-                        {product.saleModifier > 0 && product.stock > 0? (
+                        {product.saleModifier > 0 && product.stock > 0 ? (
                             <>
                                 <div className="preview__product-badges">
                                     <strong><p className="preview__product-price"> ${product.price - (product.price * product.saleModifier * 0.01)}</p> </strong>
