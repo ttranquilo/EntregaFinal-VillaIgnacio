@@ -14,16 +14,14 @@ const Navbar = (props) => {
                 </h1>
                 <nav>
                     <ul>
-                    <Link to='/'><li> All</li></Link>
-                    <Link to='/category/vegetables'><li> Vegetables</li></Link>
-                    <Link to='/category/beverages'><li> Beverages</li></Link>
-                    <Link to='/category/snacks'><li> Snacks</li></Link>
+                        <Link to='/'><li> All</li></Link>
+                        <Link to='/category/vegetables'><li> Vegetables</li></Link>
+                        <Link to='/category/beverages'><li> Beverages</li></Link>
+                        <Link to='/category/snacks'><li> Snacks</li></Link>
                     </ul>
                 </nav>
-                <Link to='/checkout'>
-                <CartWidget/>
-                </Link>
-
+                
+                <CartWidget />
             </div>
         </header>
     )

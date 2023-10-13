@@ -12,14 +12,12 @@ const CartItem = (props) => {
     };
 
     return (
-        <div>
+        <>
             <div className="cart__item">
                 <Link to={`/product/${name.toLowerCase().replace(/\s+/g, '-')}`}>
                     <img className='cart__item-image' src={url} alt="" />
                 </Link>
                 <h3> {name}</h3>
-                <div>
-                </div>
                 <div className='cart__item-info'>
                     <p> product price : ${price}</p>
                     <p> product quantity : {quantity}</p>
@@ -27,9 +25,8 @@ const CartItem = (props) => {
                 <div className='cart__item-closeBtn'>
                     <button onClick={handleRemoveClick}> X </button>
                 </div>
-
             </div>
-        </div>
+        </>
     );
 }
 

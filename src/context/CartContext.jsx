@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState, useRef } from "react";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from 'react-toastify';
+import { db } from "../db/db";
+import { getDocs, addDoc, collection } from "firebase/firestore";
 import 'react-toastify/dist/ReactToastify.css';
 
 export const cartContext = createContext();
@@ -24,11 +26,7 @@ const CartContextProvider = (props) => {
                 type: toast.TYPE.SUCCESS,
                 autoClose: 2000,
                 hideProgressBar: true,
-                
-             
             })
-
-
 
         } else {
             // Show a new toast for a different product or the first click
@@ -108,20 +106,68 @@ const CartContextProvider = (props) => {
         })
     }
 
+    const findOrderID = async (id) => {
+
+        //Look for invoices collection on the database
+        const itemCollection = collection(db, 'invoices');
+
+        // Retrieve products from Firestore
+        const response = await getDocs(itemCollection);
+        const retrievedInvoices = response.docs.map((inv) => ({
+            ...inv.data(),
+        }));
+
+        //return an order from the database if the orderID is valid
+        const targetOrder = id === "" ? "" : retrievedInvoices.filter((inv) => inv.orderID === id);
+        return targetOrder;
+    }
+
     const generateOrderToken = (length) => {
-        let result = '';
+        let token = '';
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         const charactersLength = characters.length;
         let counter = 0;
         while (counter < length) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            token += characters.charAt(Math.floor(Math.random() * charactersLength));
             counter += 1;
         }
-        return result;
+
+        // custom object for sending to the invoices database
+        const invoiceData = {
+            orderID: token.toUpperCase(),
+            customerName: 'John Doe',
+            orderDate: new Date(),
+            items: cart.map(item => ({
+                productName: item.name,
+                quantity: item.quantity,
+                price: item.price,
+                image: item.image,
+            })),
+            total: displayTotal()
+        };
+
+        const invoicesCollection = collection(db, 'invoices');
+
+        try {
+            addDoc(invoicesCollection, invoiceData)
+                .then((docRef) => {
+                    console.log(`New invoice created with ID: "${docRef.id}" (${token.toUpperCase()})`);
+                    return docRef.id; // Return the ID of the newly created invoice
+                })
+                .catch((error) => {
+                    console.error("Error creating invoice: ", error);
+                    throw error;
+                });
+        } catch (error) {
+            console.error("Error creating invoice: ", error);
+            throw error;
+        }
+
+        return token;
     }
 
     return (
-        <cartContext.Provider value={{ storeProducts, setStoreProducts, cart, setCart, addToCart, removeFromCart, clearCart, displayTotal, makePayment }}>
+        <cartContext.Provider value={{ storeProducts, setStoreProducts, cart, setCart, addToCart, removeFromCart, clearCart, displayTotal, makePayment, findOrderID }}>
             {props.children}
             <ToastContainer />
         </cartContext.Provider>

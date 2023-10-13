@@ -4,9 +4,10 @@ import CartItem from "../../components/CartItem/CartItem";
 import Layout from "../../components/Layout/Layout";
 import Swal from 'sweetalert2';
 import { Ring } from '@uiball/loaders'
+import OrderFinder from "../../components/OrderFinder/OrderFinder";
 
 
-const Checkout = (props) => {
+const Cart = (props) => {
 
   const [isLoading, setLoading] = useState(false);
 
@@ -37,29 +38,37 @@ const Checkout = (props) => {
   return (
     <Layout>
       <h1> Shopping cart</h1>
-      {!isLoading ? (
-        cart.length > 0 ? (
-          cart.map((item, index) => (
-            <CartItem
-              name={item.name}
-              price={item.price}
-              quantity={item.quantity}
-              url={item.image}
-              key={item.name + index}
-            />
-          ))
-        ) : (
-          <p> Your cart is empty.</p>
-        )
-      ) : <Ring
-        size={350}
-        lineWeight={2}
-        speed={2}
-        color="white"
-      />}
+      <div style={{ width:"100%", minHeight: 50 + "vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+        {!isLoading ? (
+          cart.length > 0 ? (
+            cart.map((item, index) => (
+              <CartItem
+                name={item.name}
+                price={item.price}
+                quantity={item.quantity}
+                url={item.image}
+                key={item.name + index}
+              />
+            ))
+          ) : (
+            
+            <OrderFinder>
+              <p> Your cart is empty.</p>
+              <strong><p> If you already made an order, you can track it here </p></strong>
+            </OrderFinder>
+
+            
+          )
+        ) : <Ring
+          size={350}
+          lineWeight={2}
+          speed={2}
+          color="white"
+        />}
+      </div>
 
       {cart.length > 0 && !isLoading && (
-        <div>
+        <>
           <h2> Your total is ${displayTotal()} </h2>
           <button
             className="cart__checkout-Btn"
@@ -76,10 +85,10 @@ const Checkout = (props) => {
           >
             Clear Cart
           </button>
-        </div>
+        </>
       )}
     </Layout>
   );
 };
 
-export default Checkout;
+export default Cart;
