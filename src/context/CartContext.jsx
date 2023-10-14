@@ -144,7 +144,7 @@ const CartContextProvider = (props) => {
             items: cart.map(item => ({
                 productName: item.name,
                 quantity: item.quantity,
-                price: item.price,
+                price: item.price - (item.price * item.saleModifier * 0.01),
                 image: item.image,
             })),
             total: displayTotal()

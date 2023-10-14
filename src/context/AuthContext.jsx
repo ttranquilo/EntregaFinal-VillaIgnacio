@@ -56,7 +56,6 @@ const AuthContextProvider = (props) => {
         });
     }
 
-
     return (
         <authContext.Provider value={{ email, setEmail, password, setPassword, userName, setUserName, loggedIn, setLogIn, signOutUser }}>
             {props.children}

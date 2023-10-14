@@ -23,9 +23,10 @@
 
 .cart__item-name {
     min-width: 150px;
+    max-width: 152px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;/
+    text-overflow: ellipsis;
 }
 
 .cart__item-price,

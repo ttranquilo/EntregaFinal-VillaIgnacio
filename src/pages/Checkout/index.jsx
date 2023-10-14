@@ -93,7 +93,7 @@ const Checkout = (props) => {
           Currently purchasing as{" "}
           <span>
             <strong>
-              {userName == "none" || userName === "" ? email : userName}
+              {userName == "none" || userName === "" ? email + " - " : userName + " - "}
             </strong>
             {loggedIn}
             <a onClick={() => signOutUser()}> sign out</a>

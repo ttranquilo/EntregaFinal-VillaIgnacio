@@ -18,18 +18,18 @@ const OrderSummary = (props) => {
             <strong><p className='summary__customerEmail'>Customer E-mail: {props.customerEmail}</p></strong>
 
             <div className='summary__container-labels'>
-                <p>Product image</p>
-                <p>Product name</p>
-                <p>Product quantity</p>
-                <p>Product price</p>
+                <p>Image</p>
+                <p>Name</p>
+                <p>Quantity</p>
+                <p>Price</p>
             </div>
             <div className='summary__container-itemList'>
                 {props.orderItems.items.map((item, index) => (
                     <div key={index} className='summary__container-item'>
                         <img className='summary__container--item-image' src={item.image} alt={item.productName} />
-                        <strong><p>{item.productName}</p></strong>
-                        <p>x{item.quantity}</p>
-                        <p>${(item.price * item.quantity).toLocaleString()}</p>
+                        <strong><p className='summary__container-name'>{item.productName}</p></strong>
+                        <p className='summary__container-quantity'>x{item.quantity}</p>
+                        <p className='summary__container-price'>${(item.price * item.quantity).toLocaleString()}</p>
                     </div>
                 ))}
             </div>
