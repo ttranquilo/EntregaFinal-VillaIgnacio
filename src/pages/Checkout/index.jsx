@@ -117,7 +117,7 @@ const Cart = (props) => {
       {cart.length > 0 && !isLoading && (
         <>
           <h2>Your total is ${displayTotal()}</h2>
-          {loggedIn === false || loggedIn === null ? (
+          {loggedIn === false ? (
             <Link to="/login">
               <button className="cart__checkout-Btn" style={btnStyle}>
                 Login to pay
