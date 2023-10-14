@@ -80,19 +80,19 @@ const Cart = (props) => {
     <Layout>
       <h1>Shopping Cart</h1>
       {loggedIn === true && loggedIn !== null ? (
-  <p>
-    Currently purchasing as{" "}
-    <span>
-      <strong>
-        {userName == "none" || userName === "" ? email : userName}
-      </strong>
-      {loggedIn}
-      <a onClick={() => signOutUser()}> sign out</a>
-    </span>
-  </p>
-) : (
-  <p></p>
-)}
+        <p>
+          Currently purchasing as{" "}
+          <span>
+            <strong>
+              {userName == "none" || userName === "" ? email : userName}
+            </strong>
+            {loggedIn}
+            <a onClick={() => signOutUser()}> sign out</a>
+          </span>
+        </p>
+      ) : (
+        <p></p>
+      )}
       <div style={{ width: "100%", minHeight: 50 + "vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
         {!isLoading ? (
           cart.length > 0 ? (
@@ -117,30 +117,18 @@ const Cart = (props) => {
       {cart.length > 0 && !isLoading && (
         <>
           <h2>Your total is ${displayTotal()}</h2>
-          {loggedIn === false && loggedIn !== null ? (
-            <>
-              <Link to={"/login"}>
-                <button
-                  className="cart__checkout-Btn"
-                  style={btnStyle}
-                >
-                  Login to pay
-                </button>
-              </Link>
-
-            </>) : (
-            <>
-              <Link to={"/checkout/success"}>
-                <button
-                  className="cart__checkout-Btn"
-                  style={btnStyle}
-                >
-                  Pay now
-                </button>
-              </Link>
-
-            </>
-
+          {loggedIn === false || loggedIn === null ? (
+            <Link to="/login">
+              <button className="cart__checkout-Btn" style={btnStyle}>
+                Login to pay
+              </button>
+            </Link>
+          ) : (
+            <Link to="/checkout/success">
+              <button className="cart__checkout-Btn" style={btnStyle}>
+                Pay now
+              </button>
+            </Link>
           )}
 
           <button
