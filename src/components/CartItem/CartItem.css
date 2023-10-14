@@ -1,13 +1,12 @@
 .cart__item {
-    margin: 20px auto;
-    width: 50%;
+    margin: 10px;
+    width: 600px;
+    height: 120px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     border: 1px solid rgb(131, 131, 131);
     border-radius: 10px;
-
-
 }
 
 .cart__item-image {
@@ -17,11 +16,26 @@
     width: 80px;
 }
 
-
-.cart__item-info {
-
-display: flex;
-flex-direction: column;
+.cart__item a {
+    align-items: center;
+    display: flex;
 }
 
+.cart__item-name {
+    min-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;/
+}
 
+.cart__item-price,
+.cart__item-discountPrice {
+    min-width: 60px;
+    margin: 0px;
+}
+
+.cart__item-discountPrice {
+    text-decoration: line-through;
+    text-align: left;
+    font-size: 10px;
+}

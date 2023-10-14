@@ -17,15 +17,31 @@ const AuthContextProvider = (props) => {
     const [password, setPassword] = useState("");
 
     //Guest states 
-    const [userName, setUserName] = useState(localStorage.getItem("stored-name") ? localStorage.getItem('stored-name') : "none")
+    const [userName, setUserName] = useState(localStorage.getItem("stored-name") ? localStorage.getItem('stored-name') : "")
 
     useEffect(() => {
         localStorage.setItem("stored-name", userName);
         localStorage.setItem("isLoggedIn", loggedIn);
         localStorage.setItem("stored-email", email);
-
-
     }, [userName, email, loggedIn]);
+
+    useEffect(() => {
+        const storedName = localStorage.getItem("stored-name");
+        const storedEmail = localStorage.getItem("stored-email");
+        const storedLogin = localStorage.getItem("isLoggedIn");
+
+        if (storedName) {
+            setUserName(storedName);
+        }
+
+        if (storedEmail) {
+            setEmail(storedEmail);
+        }
+
+        if (storedLogin) {
+            setLogIn(storedLogin);
+        }
+    }, [])
 
 
     const signOutUser = () => {

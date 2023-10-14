@@ -138,7 +138,7 @@ const CartContextProvider = (props) => {
         // custom object for sending to the invoices database
         const invoiceData = {
             orderID: token.toUpperCase(),
-            customerName: userName === "none" ? email : userName,
+            customerName: userName === "none" || userName === "" ? email : userName,
             customerEmail: email === "none" || email === "" ? "not specified" : email,
             orderDate: new Date(),
             items: cart.map(item => ({

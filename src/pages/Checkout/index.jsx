@@ -8,18 +8,23 @@ import Swal from 'sweetalert2';
 import OrderFinder from "../../components/OrderFinder/OrderFinder";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-const Cart = (props) => {
+const Checkout = (props) => {
+
+  const btnStyle = { width: 300 + "px", height: 60 + "px", fontSize: 22 + "px" };
   const [isLoading, setLoading] = useState(true); //Page state
   const [isClearing, setClearing] = useState(false); // Track cart clearing
 
-  const { loggedIn, userName, email, signOutUser } = useContext(authContext);
-  //Get url status
+  //Get url status parameter
   const { status } = useParams();
 
+  //Contexts 
+
   const { cart, displayTotal, makePayment, clearCart } = useContext(cartContext);
-  const btnStyle = { width: 300 + "px", height: 60 + "px", fontSize: 22 + "px" };
+  const { loggedIn, userName, email, signOutUser } = useContext(authContext);
+
   const navigate = useNavigate();
 
+  //Asyn function for awaiting payment from cart context
   const awaitPayment = async () => {
     if (status === "success" && cart.length > 0) {
       await makePayment().then(() => setTimeout(() => navigate("/checkout"), 1000))
@@ -31,11 +36,6 @@ const Cart = (props) => {
   }
 
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1700);
-
     // Show loading alert
     Swal.fire({
       title: 'Fetching cart...',
@@ -48,10 +48,17 @@ const Cart = (props) => {
         Swal.showLoading();
       },
     });
-
-    console.log(loggedIn);
   }, []);
 
+  //Loading effect
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 1700);
+
+  }, [isLoading])
+
+  //URL change effect
   useEffect(() => {
     if (status === "success") {
       awaitPayment();
@@ -80,7 +87,7 @@ const Cart = (props) => {
 
   return (
     <Layout>
-      <h1>Shopping Cart</h1>
+      <h1>Shopping cart</h1>
       {loggedIn === true && loggedIn !== null ? (
         <p>
           Currently purchasing as{" "}
@@ -95,6 +102,7 @@ const Cart = (props) => {
       ) : (
         <p></p>
       )}
+      
       <div style={{ width: "100%", minHeight: 50 + "vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
         {!isLoading ? (
           cart.length > 0 ? (
@@ -102,6 +110,7 @@ const Cart = (props) => {
               <CartItem
                 name={item.name}
                 price={item.price}
+                discountPrice={item.price - (item.price * item.saleModifier * 0.01)}
                 quantity={item.quantity}
                 url={item.image}
                 key={item.name + index}
@@ -117,21 +126,14 @@ const Cart = (props) => {
       </div>
 
       {cart.length > 0 && !isLoading && (
-        <>
+        <div>
           <h2>Your total is ${displayTotal()}</h2>
-          {loggedIn === false ? (
-            <Link to="/login">
-              <button className="cart__checkout-Btn" style={btnStyle}>
-                Login to pay
-              </button>
-            </Link>
-          ) : (
-            <Link to="/checkout/success">
-              <button className="cart__checkout-Btn" style={btnStyle}>
-                Pay now
-              </button>
-            </Link>
-          )}
+
+          <Link to={loggedIn === true && loggedIn !== null ? "/checkout/success" : "/login"}>
+            <button className="cart__checkout-Btn" style={btnStyle}>
+              {loggedIn === true && loggedIn !== null ? "Pay now" : "Log in to pay"}
+            </button>
+          </Link>
 
           <button
             className="cart__checkout-Btn"
@@ -140,11 +142,11 @@ const Cart = (props) => {
           >
             Clear Cart
           </button>
-        </>
+        </div>
       )}
     </Layout>
   );
 };
 
 
-export default Cart;
+export default Checkout;
