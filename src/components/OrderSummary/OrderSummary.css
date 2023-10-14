@@ -1,4 +1,4 @@
-.summary-container {
+.summary__container {
     width: 40%;
     padding: 30px;
     border-radius: 10px;
@@ -8,23 +8,42 @@
     margin: 30px auto auto auto;
 }
 
+.summary__container-labels {
+    margin: auto auto -7px auto;
+    padding-bottom: 5px;
+    width: 100%;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-radius: 10px 10px 1px 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.summary__orderID {
+    text-align: left;
+}
+
 
 .summary__container-itemList {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    margin: 40px;
+
 }
 
 .summary__container-item {
+    height: 100px;
     border: 1px solid white;
     border-radius: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     align-items: center;
-    padding: 10px 20px; /* Add some padding for spacing */
+
 }
 
 .summary__container--item-image {

@@ -37,8 +37,8 @@ const ItemQuantitySelector = (props) => {
             <input
                 type='number'
                 className={className}
+                name='quantity-text'
                 value={quantity}
-
                 onBlur={(e) => {
                     if (e.target.value.trim() === "") {
                         // When input is empty, set the quantity to 1.
@@ -60,6 +60,7 @@ const ItemQuantitySelector = (props) => {
             <input
                 type='number'
                 className="quantity-text"
+                name='quantity-text'
                 value={quantity}
 
                 onBlur={(e) => {
@@ -131,8 +132,8 @@ const ItemQuantitySelector = (props) => {
         <>
 
             {orientation === "" ? (
-               defaultOrientation()
-            ) : (horizontalOrientation()) 
+                defaultOrientation()
+            ) : (horizontalOrientation())
             }
 
         </>

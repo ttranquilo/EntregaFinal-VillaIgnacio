@@ -12,8 +12,17 @@ const OrderSummary = (props) => {
     }
 
     return (
-        <div className='summary-container'>
-            <h3 className='summary-price'>Order ID: {props.orderID}</h3>
+        <div className='summary__container'>
+            <h3 className='summary__orderID'>Order ID: {props.orderID}</h3>
+            <strong><p className='summary__customerName'>Customer name: {props.customerName}</p></strong>
+            <strong><p className='summary__customerEmail'>Customer E-mail: {props.customerEmail}</p></strong>
+
+            <div className='summary__container-labels'>
+                <p>Product image</p>
+                <p>Product name</p>
+                <p>Product quantity</p>
+                <p>Product price</p>
+            </div>
             <div className='summary__container-itemList'>
                 {props.orderItems.items.map((item, index) => (
                     <div key={index} className='summary__container-item'>
@@ -24,8 +33,9 @@ const OrderSummary = (props) => {
                     </div>
                 ))}
             </div>
-            <strong><p className='summary-date'>Order date: {props.orderDate}</p></strong>
-            <strong><p className='summary-orderTotal'>Order total: ${props.totalPrice.toLocaleString()}</p></strong>
+
+            <strong><p className='summary__date'>Order date: {props.orderDate}</p></strong>
+            <strong><p className='summary__orderTotal'>Order total: ${props.totalPrice.toLocaleString()}</p></strong>
 
             <Link to={"/"}>
                 <button> Back to home </button>

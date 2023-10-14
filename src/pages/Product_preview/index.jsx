@@ -2,6 +2,8 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { db } from '../../db/db';
 import { collection, getDocs } from 'firebase/firestore';
+import { Ring } from '@uiball/loaders'
+
 import Layout from '../../components/Layout/Layout';
 import './product_preview.css'
 import ItemQuantitySelector from "../../components/ItemQuantitySelector/ItemQuantitySelector";
@@ -9,23 +11,34 @@ import ItemQuantitySelector from "../../components/ItemQuantitySelector/ItemQuan
 const Product_preview = () => {
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchProducts = async () => {
+            setTimeout(async () => {
+                try {
+                    // Look for the collection named "products" on Firestore
+                    const itemCollection = collection(db, 'products');
+                    // Retrieve products from Firestore
+                    const response = await getDocs(itemCollection);
 
-            //Look for the collection named "products" on fire store
-            const itemCollection = collection(db, 'products');
-            // Retrieve products from Firestore
-            const response = await getDocs(itemCollection);
+                    // Read the data from the response and store it into a variable
+                    const retrievedProducts = response.docs.map((prod) => ({
+                        ...prod.data(),
+                    }));
 
-            //read the data from the response and store it into a variable
-            const retrievedProducts = response.docs.map((prod) => ({
-                ...prod.data(),
-            }));
+                    // Get the current previewing product from the retrieved products by using the product ID 
+                    const filteredProduct = retrievedProducts.find((prod) => prod.name.toLowerCase() === productId.replace(/-/g, ' '));
 
-            //get the current previewing product from the retrieved products by using the product ID 
-            const filteredProduct = retrievedProducts.find((prod) => prod.name.toLowerCase() === productId.replace(/-/g, ' '));
-            setProduct(filteredProduct);
+                    if (filteredProduct) {
+                        setProduct(filteredProduct);
+                    }
+                } catch (error) {
+                    console.error(error);
+                } finally {
+                    setLoading(false);
+                }
+            }, 1000);
         };
 
         fetchProducts();
@@ -33,9 +46,19 @@ const Product_preview = () => {
 
     return (
         <Layout>
-            {product ? (
-                <div className="preview__container">
+            {loading ? (
+                <div style={{ minHeight: 100 + "vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+                    <h2 > Loading product...</h2>
+                    <Ring
+                        size={350}
+                        lineWeight={2}
+                        speed={2}
+                        color="white"
+                    />
+                </div>
 
+            ) : product ? (
+                <div className="preview__container">
                     <img src={product.image} className="preview__product--image" alt="" />
 
                     <div className="preview__product-details">
@@ -51,10 +74,8 @@ const Product_preview = () => {
                                 {product.stock > 0
                                     ? `On stock (${product.stock} units left${product.stock <= 10 ? ", order soon!" : ""
                                     })
-                                    `
+                                `
                                     : "Out of stock"}
-
-
                             </p>
                         </strong>
 
@@ -83,8 +104,6 @@ const Product_preview = () => {
                                     <strong><p> Or </p></strong>
                                 </>
 
-
-
                             ) : (
                                 <h3> Out of stock, come back another time</h3>
                             )}
@@ -98,7 +117,13 @@ const Product_preview = () => {
                     </div>
                 </div>
             ) : (
-                <p>Loading product...</p>
+                <div style={{ minHeight: 100 + "vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+                    <h2 > Product not found </h2>
+                    <Link to={"/"}>
+                        <button> Return to home </button>
+                    </Link>
+                </div>
+
             )}
         </Layout>
     );

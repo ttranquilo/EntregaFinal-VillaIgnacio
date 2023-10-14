@@ -1,0 +1,24 @@
+.login__error-text {
+    color: red;
+}
+
+.button_container {
+    display: flex;
+    width: 30%;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    gap:  10px;
+}
+
+.button_container button {
+    align-self: center;
+    width: 95%;
+}
+
+
+#email, #password, #username {
+    margin: 10px;
+    border-radius: 10px;
+    height: 30px;
+}

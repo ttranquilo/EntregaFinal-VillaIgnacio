@@ -26,9 +26,9 @@ const Summary = () => {
                         findOrder([]);
                     } else {
                         findOrder(resultArray);
-                     
+
                     }
-                }, 1000); 
+                }, 1000);
             } catch (error) {
                 console.error(error);
                 setLoading(false);
@@ -62,14 +62,17 @@ const Summary = () => {
                 ) : (
                     <>
                         <OrderSummary
+                           
                             orderID={id}
+                            customerName = {foundOrder[0].customerName}
+                            customerEmail = {foundOrder[0].customerEmail}
                             orderItems={foundOrder[0]}
                             orderDate={
                                 new Date(foundOrder[0].orderDate.seconds * 1000).toDateString()
                             }
                             totalPrice={foundOrder[0].total}
                         />
-                       
+
                     </>
 
 

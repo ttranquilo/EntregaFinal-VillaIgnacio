@@ -1,5 +1,5 @@
-import {createBrowserRouter , RouterProvider} from 'react-router-dom'
-import { ProductLoader, ItemPreviewPage, CheckoutPage, SummaryPage } from '../pages';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { ProductLoader, ItemPreviewPage, CheckoutPage, SummaryPage, LoginPage } from '../pages';
 
 const routes = createBrowserRouter([
     {
@@ -8,27 +8,36 @@ const routes = createBrowserRouter([
     },
     {
         path: '/product/:productId',
-        element: <ItemPreviewPage/>
+        element: <ItemPreviewPage />
     },
     ,
     {
         path: '/category/:id',
-        element: <ProductLoader/>
+        element: <ProductLoader />
     },
-    
+
     {
         path: '/order/:id',
-        element: <SummaryPage/>
+        element: <SummaryPage />
     },
     {
         path: '/checkout',
-        element: <CheckoutPage />
+        element: <CheckoutPage />,
+    },
+    {
+        //Status for processing cart order
+        path: '/checkout/:status',
+        element: <CheckoutPage />,
+    },
+    {
+        path: '/login',
+        element: <LoginPage />
     }
 ]);
 
 const CustomBrowserRouter = () => {
-    return ( 
-        <RouterProvider router={routes}/>
+    return (
+        <RouterProvider router={routes} />
     )
 }
 

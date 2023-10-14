@@ -58,6 +58,7 @@ const ProductLoader = () => {
       html: 'We are loading the product catalog, please be patient.',
       showCancelButton: false,
       showCloseButton: false,
+      allowOutsideClick: false,
       timer: 2000,
       didOpen: () => {
         Swal.showLoading();

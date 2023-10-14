@@ -10,6 +10,7 @@ const CartWidget = () => {
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
+    //Redirect to checkout page when clicking the cart icon
     <Link to='/checkout'>
       <div className="CartBadge" data-badge={totalQuantity}>
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" className="bi bi-cart mx-5" viewBox="0 0 16 16">

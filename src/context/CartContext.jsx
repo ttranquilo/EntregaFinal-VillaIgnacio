@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState, useRef } from "react";
+import { createContext, useEffect, useState, useRef, useContext } from "react";
 import Swal from "sweetalert2";
+import { authContext } from "./AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
 import { db } from "../db/db";
 import { getDocs, addDoc, collection } from "firebase/firestore";
@@ -14,6 +15,7 @@ const CartContextProvider = (props) => {
 
     const [storeProducts, setStoreProducts] = useState([]);
     const [cart, setCart] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [])
+    const { userName, email } = useContext(authContext);
 
     const addToCart = (item) => {
 
@@ -82,13 +84,13 @@ const CartContextProvider = (props) => {
         return cart.reduce((total, item) => total + item.price * item.quantity, 0).toLocaleString();
     }
 
-    const makePayment = () => {
+    const makePayment = async () => {
         Swal.fire({
             title: 'Processing payment, please wait',
             icon: 'warning',
-
             showCancelButton: false,
             showCloseButton: false,
+            allowOutsideClick: false,
             timer: 2000,
             didOpen: () => {
                 Swal.showLoading();
@@ -103,6 +105,7 @@ const CartContextProvider = (props) => {
             })
 
             clearCart();
+
         })
     }
 
@@ -135,7 +138,8 @@ const CartContextProvider = (props) => {
         // custom object for sending to the invoices database
         const invoiceData = {
             orderID: token.toUpperCase(),
-            customerName: 'John Doe',
+            customerName: userName === "none" ? email : userName,
+            customerEmail: email === "none" || email === "" ? "not specified" : email,
             orderDate: new Date(),
             items: cart.map(item => ({
                 productName: item.name,
