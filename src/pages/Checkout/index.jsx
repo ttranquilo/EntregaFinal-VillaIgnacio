@@ -48,6 +48,8 @@ const Cart = (props) => {
         Swal.showLoading();
       },
     });
+
+    console.log(loggedIn);
   }, []);
 
   useEffect(() => {
