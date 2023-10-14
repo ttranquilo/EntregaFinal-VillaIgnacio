@@ -53,7 +53,9 @@ const Cart = (props) => {
   }, []);
 
   useEffect(() => {
-    awaitPayment();
+    if (status === "success") {
+      awaitPayment();
+    }
   }, [status])
 
   const handleClearCart = () => {
