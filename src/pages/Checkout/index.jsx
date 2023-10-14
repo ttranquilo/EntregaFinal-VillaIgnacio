@@ -48,7 +48,6 @@ const Cart = (props) => {
         Swal.showLoading();
       },
     });
-
   }, []);
 
   useEffect(() => {
@@ -78,13 +77,14 @@ const Cart = (props) => {
   return (
     <Layout>
       <h1>Shopping Cart</h1>
-      {loggedIn ? (
+      {loggedIn === true && loggedIn !== null ? (
   <p>
     Currently purchasing as{" "}
     <span>
       <strong>
         {userName == "none" || userName === "" ? email : userName}
       </strong>
+      {loggedIn}
       <a onClick={() => signOutUser()}> sign out</a>
     </span>
   </p>
