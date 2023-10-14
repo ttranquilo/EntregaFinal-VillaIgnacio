@@ -116,7 +116,7 @@ const Cart = (props) => {
         ) : null}
       </div>
 
-      {cart.length > 0 && (
+      {cart.length > 0 && !isLoading && (
         <>
           <h2>Your total is ${displayTotal()}</h2>
           {loggedIn === false ? (
